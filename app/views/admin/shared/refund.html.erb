@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="rightPanel">×</button>
+    <h4 class="modal-title">提示</h4>
+</div>
+<div class="modal-body">
+    <div class="form-horizontal">
+        <% if record.state == -1 %>
+          <h3> 分销返利已扣款</h3>
+
+          <div class="form-actions">
+              <%= link_to '取消', '#', 'data-dismiss' => "rightPanel", class: 'btn btn-default' %>
+            </div>
+          <% else %>
+
+            <div class="modal-body">
+                <%= form_for record, as: :trade, :url => refundment_admin_fx_trade_path(record),
+                  :html => {:method => :post  , :multipart => true, class: "form-horizontal"} do |f| %>
+
+                    <div class="form-group">
+                        <%record.transations.unrefunds.order("dealer_level asc").each do |transation|%>
+                          <div class="form-control-static">
+                              <strong>分销商: <%= transation.dealer.name %></strong> <%= transation.subject%>: <%= transation.amount %>元
+                              <strong> 扣除: </strong><%=text_field_tag "refund#{transation.dealer_level}",nil%>元 
+                          </div>
+                        <%end%>
+                    </div>
+                    <div class="form-actions">
+                        <input type="submit" value="退款" id="addusersub" name="adduser" class="btn btn-primary"/>
+                        <%= link_to '取消', '#', 'data-dismiss' => "rightPanel", class: 'btn btn-default' %>
+                      </div>
+                    <%end%>
+                </div>
+              <% end %>
+          </div>
+      </div>

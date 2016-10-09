@@ -1,0 +1,84 @@
+<% content_for :title, "下载APP" %>
+<header class="top_bar clearfix">
+    <div class="wxopen" style="z-index: 9999;">
+        <div class="wx_n">
+            <span>请点击右上角“···”</span>
+            <span>在Safari中打开下载APP~</span>
+        </div>
+    </div>
+</header>
+<main class= "startcode">
+
+    <div class="hzb_logo">
+        <%= image_tag "fx/logo_1.png"%> 
+
+    </div>
+    <div class="hzb_logo1">
+        <%= image_tag "fx/logo_2.png"%> 
+
+    </div>
+    <div class="hzb_logo2">
+        <%= image_tag "fx/logo_3.png"%> 
+
+    </div>
+
+    <div class="content_input">
+        <a href="http://zhushou.360.cn/detail/index/soft_id/3401152"> <input type="submit" value="下载会展邦App  安卓版" /></a>
+    </div>
+
+    <div class="content_input">
+        <a href="javascript:;" id="btn"><input type="submit" value="下载会展邦App  IOS版"/></a>
+    </div>
+
+
+
+
+</main>
+
+<script>
+
+
+  var win_width = $(window).width();
+  var win_height = $(window).height();
+
+  function bgl(bool) {
+      var div1 = $("<div id='hei'></div>");
+      div1.css("width", win_width + "px");
+      div1.css("height", win_height + "px");
+      div1.css("position", "fixed");
+      div1.css("top", 0);
+      div1.css("left", 0);
+      div1.css("background", "#000");
+      div1.css("opacity", 0.8);
+      div1.css("z-index", 999);
+
+      if (bool) {
+          $("body").append(div1);
+      } else {
+          $("#hei").remove();
+      }
+  }
+
+  //判断是否是微信内置浏览器
+  function isWeiXin() {
+      var ua = navigator.userAgent.toLowerCase();
+      var u = navigator.userAgent;
+      isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+      if (ua.match(/MicroMessenger/i) == "micromessenger" && isiOS) {
+          return true;
+      } else {
+          return false;
+      }
+  }
+
+  //弹框  点击判断
+  $("#btn").click(function () {
+      //判断是否是微信
+      if (isWeiXin()) {
+          bgl(true);
+          $(".wxopen").show();
+      } else {
+          location.href = "https://itunes.apple.com/cn/app/hui-zhan-bang-shou-jia-gong/id1044168941?l=en&mt=8";
+      }
+  });
+</script>

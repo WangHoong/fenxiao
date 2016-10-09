@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>大客户通道</title>
+        <%= stylesheet_link_tag    'register', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <script>
+
+          //动态设置html字体大小
+          var iWidth = document.documentElement.clientWidth;
+          document.getElementsByTagName('html')[0].style.fontSize = iWidth / 16 + 'px';
+          if (window != top) {
+              top.location.href = window.location.href;
+          }
+        </script>
+        <%= csrf_meta_tags %>
+    </head>
+    <body>
+
+        <%= yield %>
+
+    </body>
+</html>

@@ -1,0 +1,25 @@
+ 
+
+  <div class="dkh">
+      <%= image_tag "fx/dakehu.png"%>
+  </div>
+  <%= form_for(@user, as: :user,:html => {remote: true}) do |form| %>
+    <div class="dkh_zc">
+        <%= form.text_field :account, :placeholder => "注册手机号" %>
+    </div>
+    <div class="dkh_zc">
+        <input type="text" name="mcaptcha" placeholder="输入验证码"/>
+        <input type="button" value="获取验证码" class="dkh_yz" onclick="send_msg(this);"/>
+
+    </div>
+    <div class="dkh_zc">
+        <%= text_field_tag "user[nickname]", nil , :placeholder => "请输入昵称" %> 
+    </div>
+    <input type="hidden" name="invitation" value="<%=params[:invitation]%>" />
+    <div class="dkh_zc">
+        <%= form.password_field :password, :placeholder => "请设置6-20位登录密码" %>
+    </div>
+    <div class="dkh_tj">
+        <%=submit_tag "立即注册"%>
+    </div>
+  <% end %>
